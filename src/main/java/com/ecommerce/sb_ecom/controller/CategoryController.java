@@ -1,5 +1,6 @@
 package com.ecommerce.sb_ecom.controller;
 
+import com.ecommerce.sb_ecom.config.AppConstants;
 import com.ecommerce.sb_ecom.payload.CategoryDTO;
 import com.ecommerce.sb_ecom.payload.CategoryResponse;
 import com.ecommerce.sb_ecom.service.CategoryService;
@@ -18,8 +19,11 @@ public class CategoryController {
     }
 
     @GetMapping("/api/public/categories")
-    public ResponseEntity<CategoryResponse> getCategories() {
-        CategoryResponse response = categoryService.getCategories();
+    public ResponseEntity<CategoryResponse> getCategories(@RequestParam(name = "pageNumber", defaultValue = AppConstants.PAGE_NUMBER, required = false) Integer pageNumber,
+                                                          @RequestParam(name = "pageSize", defaultValue = AppConstants.PAGE_SIZE, required = false) Integer pageSize,
+                                                          @RequestParam(name = "sortBy", defaultValue = AppConstants.SORT_CATEGORIES_BY, required = false) String sortBy,
+                                                          @RequestParam(name = "sortOrder", defaultValue = AppConstants.SORT_DIR, required = false) String sortOrder) {
+        CategoryResponse response = categoryService.getCategories(pageNumber, pageSize, sortBy, sortOrder);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
