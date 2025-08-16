@@ -1,7 +1,6 @@
 package com.ecommerce.sb_ecom.model;
 
 import jakarta.persistence.*;
-import jakarta.persistence.criteria.Fetch;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -40,7 +39,7 @@ public class User {
     private String email;
 
     @NotBlank
-    @Size(max = 50)
+    @Size(max = 120)
     @Column(name = "password")
     private String password;
 
